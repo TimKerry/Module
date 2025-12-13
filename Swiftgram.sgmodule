@@ -1,0 +1,11 @@
+#!name=Swiftgram
+#!desc=Telegram 外部链接跳转至 Swiftgram
+#!author=sooyaaabo (Surge 适配)
+#!homepage=https://github.com/sooyaaabo/Loon
+#!icon=https://raw.githubusercontent.com/sooyaaabo/Loon/main/Icon/App-Icon/Swiftgram.png
+
+[Rewrite]
+^https?:\/\/t\.me\/(.+) url 302 sg://resolve?domain=$1
+
+[MITM]
+hostname = t.me
