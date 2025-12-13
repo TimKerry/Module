@@ -4,9 +4,8 @@
 #!icon=https://raw.githubusercontent.com/sooyaaabo/Loon/main/Icon/App-Icon/Jingdong.png
 #!openUrl=https://apps.apple.com/app/id414245413
 #!tag=去广告, 功能增强
-#!loon_version=3.3.5(904)
 #!homepage=https://github.com/sooyaaabo/Loon/blob/main/README.md
-#!date=2025-10-16 00:00
+#!date=2025-12-13 00:00
 #!arguments=Manmanbuy-Cookie:true,JDPrice-TitleEmbed:false,JDPrice-DetailEmbed-Table:true,JDPrice-DetailEmbed-Line:false
 
 [Rule]
@@ -39,8 +38,6 @@ http-response-jq ^https:\/\/api\.m\.jd\.com\/client\.action\?functionId=basicCon
 
 # 京东比价
 [京东比价]获取慢慢买Cookie = type=http-request, pattern=^https?:\/\/apapia-sqk-weblogic\.manmanbuy\.com\/baoliao\/center\/menu$, script-path=https://raw.githubusercontent.com/mw418/Loon/main/script/jd_price.js, requires-body=true, timeout=60
-
-[京东比价]标题嵌入版 = type=http-response, pattern=^https?:\/\/api\.m\.jd\.com\/client\.action\?functionId=(wareBusiness|serverConfig|basicConfig), script-path=https://raw.githubusercontent.com/wf021325/qx/master/js/jd_price.js, requires-body=true
 
 [京东比价]详情嵌入版（表格图） = type=http-response, pattern=^https?:\/\/in\.m\.jd\.com\/product\/graphext\/\d+\.html, script-path=https://raw.githubusercontent.com/wf021325/qx/master/js/jd_price.js, requires-body=true, timeout=60
 
