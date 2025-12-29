@@ -1,0 +1,8 @@
+#!name=中国广电
+#!desc=某些APP要清除缓存或者重新安装拦截广告才会生效！
+
+[Map Local]
+^https?:\/\/app\.10099\.com\.cn\/contact-web\/api\/version\/getFlashScreenPage data-type=text data=" " status-code=200
+
+[MITM]
+hostname = %APPEND% app.10099.com.cn
