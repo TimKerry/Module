@@ -1,0 +1,8 @@
+#!name=IT之家去广告
+#!desc=IT之家去广告
+[URL Rewrite]
+^https?:\/\/dat\.ruanmei\.com\/ithome\/money\/acd\.json$ - reject
+[Script]
+IT之家去广告 = type=http-response, pattern=^https:\/\/napi\.ithome\.com\/api\/(news\/indexv2\/iphone\/\d+|topmenu\/getfeeds\?), script-path=https://raw.githubusercontent.com/TimKerry/Script/refs/heads/main/IT%E4%B9%8B%E5%AE%B6%E5%8E%BB%E5%B9%BF%E5%91%8A.js, requires-body=true, argument="[true,true]"
+[MITM]
+hostname = %APPEND% napi.ithome.com, api.zuihuimai.com, dat.ruanmei.com
