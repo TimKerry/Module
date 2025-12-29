@@ -1,0 +1,6 @@
+#!name=懂车帝
+#!desc=某些APP要清除缓存或者重新安装拦截广告才会生效！
+
+[Rule]
+DOMAIN-KEYWORD,p3-pack.byteimg.com,REJECT
+DOMAIN-KEYWORD,p6-pack.byteimg.com,REJECT
