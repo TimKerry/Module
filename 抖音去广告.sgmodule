@@ -1,0 +1,6 @@
+#!name=抖音
+#!desc=某些APP要清除缓存或者重新安装拦截广告才会生效！
+
+[Rule]
+DOMAIN-KEYWORD,bds.snssdk.com,REJECT
+DOMAIN-KEYWORD,p3.pstatp.com,REJECT
