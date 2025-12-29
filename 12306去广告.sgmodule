@@ -1,0 +1,9 @@
+#!name=12306去广告
+#!desc=12306去广告
+[Rule]
+DOMAIN,ad.12306.cn,DIRECT,extended-matching
+[Script]
+移除12306开屏广告 = type=http-request, pattern=^https:\/\/ad\.12306\.cn\/ad\/ser\/getAdList$, script-path=https://raw.githubusercontent.com/TimKerry/Script/refs/heads/main/%E7%A7%BB%E9%99%A412306%E5%BC%80%E5%B1%8F%E5%B9%BF%E5%91%8A.js, requires-body=true
+移除12306应用内广告 = type=http-request, pattern=^https:\/\/mobile\.12306\.cn\/otsmobile\/app\/mgs\/mgw\.htm$, script-path=https://raw.githubusercontent.com/TimKerry/Script/refs/heads/main/%E7%A7%BB%E9%99%A412306%E5%BA%94%E7%94%A8%E5%86%85%E5%B9%BF%E5%91%8A.js
+[MITM]
+hostname = %APPEND% ad.12306.cn, mobile.12306.cn
