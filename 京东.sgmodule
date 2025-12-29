@@ -1,7 +1,7 @@
 #!name=京东
 #!desc=1.过滤京东广告；2.历史比价信息。
 #!date=2025-12-29 20:30
-#!arguments=Manmanbuy-Cookie:true,JDPrice-TitleEmbed:false,JDPrice-DetailEmbed-Table:true,JDPrice-DetailEmbed-Line:false
+#!arguments=Manmanbuy-Cookie:true
 
 [Rule]
 # AND, ((PROTOCOL, TCP), (DOMAIN, api.m.jd.com)), REJECT-NO-DROP
