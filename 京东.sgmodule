@@ -1,6 +1,6 @@
 #!name=京东
 #!desc=1.过滤京东广告；2.历史比价信息。
-#!arguments=Manmanbuy-Cookie:true,JDPrice-TitleEmbed:false,JDPrice-DetailEmbed-Table:true,JDPrice-DetailEmbed-Line:false
+#!arguments=Manmanbuy-Cookie:true,JDPrice-DetailEmbed-Table:true,JDPrice-DetailEmbed-Line:false
 
 [Rule]
 # AND, ((PROTOCOL, TCP), (DOMAIN, api.m.jd.com)), REJECT-NO-DROP
@@ -32,8 +32,6 @@ http-response-jq ^https:\/\/api\.m\.jd\.com\/client\.action\?functionId=basicCon
 
 # 京东比价
 [京东比价]获取慢慢买Cookie = type=http-request, pattern=^https?:\/\/apapia-sqk-weblogic\.manmanbuy\.com\/baoliao\/center\/menu$, script-path=https://raw.githubusercontent.com/mw418/Loon/main/script/jd_price.js, requires-body=true, timeout=60
-
-[京东比价]标题嵌入版 = type=http-response, pattern=^https?:\/\/api\.m\.jd\.com\/client\.action\?functionId=(wareBusiness|serverConfig|basicConfig), script-path=https://raw.githubusercontent.com/wf021325/qx/master/js/jd_price.js, requires-body=true
 
 [京东比价]详情嵌入版（表格图） = type=http-response, pattern=^https?:\/\/in\.m\.jd\.com\/product\/graphext\/\d+\.html, script-path=https://raw.githubusercontent.com/wf021325/qx/master/js/jd_price.js, requires-body=true, timeout=60
 
