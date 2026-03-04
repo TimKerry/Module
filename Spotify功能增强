@@ -1,0 +1,33 @@
+#!name=Spotify功能增强
+#!desc=Spotify去广告加部分解锁会员功能,音质不能设置为超高,初期可能会登出二到三次,重新登录即可。
+#!date=2026-03-05
+
+[Rule]
+AND,((DOMAIN-SUFFIX,spotify.com),(PROTOCOL,QUIC)),REJECT
+
+[Header Rewrite]
+http-request ^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/user-customization-service\/v1\/customize header-del 'if-none-match'
+
+[Map Local]
+^https:\/\/(?:\w+-spclient|spclient\.wg)\.spotify\.com(?::443)?\/pendragon\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+^https:\/\/spclient\.wg\.spotify\.com\/pushka-tokens\/ data-type=text data=" " status-code=200
+
+^https:\/\/.*-spclient\.spotify\.com(:443)?\/gabo-receiver-service\/ data-type=text data=" " status-code=200
+
+^https:\/\/spclient\.wg\.spotify\.com(:443)?\/gabo-receiver-service\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+^https:\/\/spclient\.wg\.spotify\.com(:443)?\/ad data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+^https:\/\/spclient\.wg\.spotify\.com(:443)?\/offline data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+^https:\/\/.*-spclient\.spotify\.com(:443)?\/offline data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+[Script]
+#http-request ^https:\/\/spclient.wg.spotify.com\/pushka-tokens\/.* script-path=https://raw.githubusercontent.com/Amlabort/MY_clash/refs/heads/main/files/lpx/js/spot-delete-deny.js, timeout=10, tag=spotify-deny
+spotify-json = type=http-request, pattern=^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/(artistview\/v1\/artist|album-entity-view\/v2\/album)\/, script-path=https://raw.githubusercontent.com/Amlabort/MY_clash/refs/heads/main/files/lpx/js/spot-Json-copy.js, timeout=10
+
+spotifyProto = type=http-response, pattern=^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)(\?.*)?$, script-path=https://raw.githubusercontent.com/Amlabort/MY_clash/refs/heads/main/files/lpx/js/spot-proto-copy.js, requires-body=true, binary-body-mode=true, timeout=10
+
+[MITM]
+hostname = %APPEND% spclient.wg.spotify.com, *spclient.spotify.com
