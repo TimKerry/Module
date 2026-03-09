@@ -1,19 +1,13 @@
-#!name=Spotify去广告
-#!desc=移除播放广告，恢复歌手和专辑列表的正常展示。修改插件自定义配置项需要重新登陆方可生效。
-#!date=2025-12-29 15:30:17
-#!arguments=tab:false,useractivity:true
-
-[Rule]
-AND,((DOMAIN-SUFFIX,spotify.com,extended-matching),(PROTOCOL,QUIC)),REJECT
+#!name=Spotify
+#!desc=功能增强
+#!category=App
+#!arguments=Mock:"https://mock.trigram-masques-8r.workers.dev/music"
 
 [URL Rewrite]
-^https:\/\/(?:\w+-spclient|spclient\.wg)\.spotify\.com(?::443)?\/artistview\/v1\/artist\/(.*)&platform=iphone https://spclient.wg.spotify.com/artistview/v1/artist/$1&platform=ipad header
-
-[Map Local]
-^https:\/\/(?:\w+-spclient|spclient\.wg)\.spotify\.com(?::443)?\/pendragon\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-
-[Script]
-Protobuf处理 = type=http-response, pattern=^https:\/\/(?:\w+-spclient|spclient\.wg)\.spotify\.com(?::443)?\/(?:bootstrap|user-customization-service), script-path=https://raw.githubusercontent.com/TimKerry/Script/refs/heads/main/Spotify%E5%8E%BB%E5%B9%BF%E5%91%8A.js, requires-body=true, binary-body-mode=true, timeout=5, argument="[{{{tab}}},{{{useractivity}}}]"
+# 移除追踪
+^https:\/\/(?:spclient\.wg|[a-z0-9]+-spclient)\.spotify\.com(?::443)?\/(?:ad-|gabo|pendragon|social) - reject
+# 移除广告
+^https:\/\/(?:spclient\.wg|[a-z0-9]+-spclient)\.spotify\.com(?::443)?\/(user-customization-service|bootstrap) {{{Mock}}}/$1 header
 
 [MITM]
-hostname = %APPEND% *-spclient.spotify.com, spclient.wg.spotify.com
+hostname = %INSERT% spclient.wg.spotify.com, g*-spclient.spotify.com
