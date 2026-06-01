@@ -1,0 +1,21 @@
+#!name=苹果 APNs 推送（可编辑策略版）
+#!desc=修改下面的 argument 即可切换策略，设置后建议重连网络或开关飞行模式
+
+[Argument]
+apns_policy = PROXY
+
+[Rule]
+DOMAIN-SUFFIX,push.apple.com,%apns_policy%
+DOMAIN-SUFFIX,akadns.net,%apns_policy%
+DOMAIN-KEYWORD,apple.com.edgekey.net,%apns_policy%
+
+IP-CIDR,17.249.0.0/16,%apns_policy%,no-resolve
+IP-CIDR,17.252.0.0/16,%apns_policy%,no-resolve
+IP-CIDR,17.57.144.0/22,%apns_policy%,no-resolve
+IP-CIDR,17.188.128.0/18,%apns_policy%,no-resolve
+IP-CIDR,17.188.20.0/23,%apns_policy%,no-resolve
+
+IP-CIDR6,2620:149:a44::/48,%apns_policy%,no-resolve
+IP-CIDR6,2403:300:a42::/48,%apns_policy%,no-resolve
+IP-CIDR6,2403:300:a51::/48,%apns_policy%,no-resolve
+IP-CIDR6,2a01:b740:a42::/48,%apns_policy%,no-resolve
