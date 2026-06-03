@@ -1,7 +1,7 @@
 #!name=苹果 APNs 推送（可编辑策略版）
 #!desc=修改下面的 argument 即可切换策略，设置后建议重连网络或开关飞行模式
 
-#!arguments-desc=Proxy: 选择策略组
+#!arguments=Proxy:DIRECT
 
 [Rule]
 DOMAIN-SUFFIX,push.apple.com,{{{Proxy}}}
